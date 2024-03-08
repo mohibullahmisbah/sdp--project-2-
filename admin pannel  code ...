@@ -1,0 +1,93 @@
+#include<iostream>
+#include<fstream>
+#include<string.h>
+using namespace std;
+
+void regestration();
+void login();
+
+int main()
+{
+    int choice;
+    cout<<"\t\t\t\n\n_______________________ Wellcome _________________________\n\n";
+    cout<<"_______________________   menu _________________________\n\n\n"<<endl;
+    cout<<"\t -> Press 1 to REGESTRATION."<<endl;
+    cout<<"\t -> Press 2 to LOG IN."<<endl;
+    cout<<"\t -> Press 3 to EXIT.\n\n"<<endl;
+    cout<<"\t  Please enter your choice...! ";
+    cin>>choice;
+
+    switch(choice)
+    {
+        case 1:
+            regestration();
+            break;
+
+        case 2:
+            login();
+            break;
+
+        case 3:
+            cout<<"\n\t  Thank You.\n\n";
+            break;
+
+        default:
+            cout<<"Please choice a number from the menu.";
+
+    }
+
+    return 0;
+}
+
+void regestration()
+{
+    string reg_userName,reg_password,reg_Name,reg_id;
+    system("cls");
+    cout<<"Enter User Name : ";
+    cin>>reg_userName;
+    cout<<"Enter Password  : ";
+    cin>>reg_password;
+
+    ofstream reg("record.txt",ios::app);
+    reg<<reg_Name<<" "<<reg_id<<endl;
+    system("cls");
+    cout<<"Regestration successful."<<endl;
+     main() ;
+}
+
+void login()
+{
+    int count;
+    string userName,password,name,pass;
+    system("cls");
+    cout<<"Please enter the user name and password..\n"<<endl;
+    cout<<"USER NAME : ";
+    cin>>userName;
+    cout<<"PASSWORD  : ";
+    cin>>password;
+
+    ifstream input("record.txt");
+
+    while(input>>name>>pass)
+    {
+        if(name== userName && pass== password )
+        {
+            count=1;
+        }
+    }
+    input.close();
+
+    if(count=1)
+    {
+        cout<<"Log in successfull .";
+        main();
+    }
+    else
+    {
+        cout<<"Log in failed..!\n Please check your user name or password. ";
+        main();
+    }
+
+}
+
+
